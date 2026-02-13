@@ -9,7 +9,7 @@ const quizData = [
       { text: "Your possessiveness 😆", correct: false }
     ],
     reactions: {
-      correct: "Of course 😍 that innocent smile is my weakness(Also boobs too 😜)!",
+      correct: "Of course 😍 that innocent smile is my weakness (Also boobs too 😜)!",
       wrong: "Oiii 😤 look properly…!"
     }
   },
@@ -62,8 +62,10 @@ const music = document.getElementById("bgMusic");
 document.getElementById("startBtn").onclick = () => {
   intro.classList.remove("active");
   quiz.classList.add("active");
+
   music.volume = 0.6;
   music.play().catch(() => {});
+
   loadQuestion();
 };
 
@@ -92,9 +94,15 @@ function handleAnswer(correct) {
   currentQ++;
 
   if (currentQ < quizData.length) {
-    setTimeout(loadQuestion, 1600);
+    setTimeout(() => {
+      closePopup();
+      loadQuestion();
+    }, 1600);
   } else {
-    setTimeout(startSlideshow, 1600);
+    setTimeout(() => {
+      closePopup();
+      startSlideshow();
+    }, 1600);
   }
 }
 
@@ -104,10 +112,6 @@ function showPopup(text, final = false) {
   popupText.textContent = text;
   popupTeddy.style.display = final ? "block" : "none";
   popup.classList.remove("hidden");
-
-  if (!final) {
-    setTimeout(closePopup, 1500);
-  }
 }
 
 function closePopup() {
@@ -117,29 +121,31 @@ function closePopup() {
 /* ================= SLIDESHOW ================= */
 
 const photos = [
-  "images/photo1.jpg",
-  "images/photo2.jpg",
-  "images/photo3.jpg",
-  "images/photo4.jpg",
-  "images/photo5.jpg",
-  "images/photo6.jpg"
+  "photo1.png",
+  "photo2.png",
+  "photo3.png",
+  "photo4.png",
+  "photo5.png",
+  "photo6.png"
 ];
 
 let slideIndex = 0;
+let slideInterval;
 
 function startSlideshow() {
   quiz.classList.remove("active");
   slideshow.classList.add("active");
 
-  setInterval(() => {
+  slideInterval = setInterval(() => {
     slideIndex = (slideIndex + 1) % photos.length;
     document.getElementById("slide").src = photos[slideIndex];
   }, 2500);
 
   setTimeout(() => {
+    clearInterval(slideInterval);
     slideshow.classList.remove("active");
     proposal.classList.add("active");
-  }, 14000);
+  }, 15000);
 }
 
 /* ================= YES / NO ================= */
@@ -147,14 +153,15 @@ function startSlideshow() {
 const noBtn = document.getElementById("noBtn");
 
 noBtn.onmouseover = () => {
-  noBtn.style.left = Math.random() * 200 + "px";
-  noBtn.style.top = Math.random() * 80 + "px";
+  noBtn.style.left = Math.random() * 250 + "px";
+  noBtn.style.top = Math.random() * 100 + "px";
 };
 
 document.getElementById("yesBtn").onclick = () => {
   document.querySelector(".btn-group").style.display = "none";
+
   showPopup(
-    "Pattu 🧸❤️\n\nI don't want to the sorrow under the dark sky.\nI will be sunshine\n\nDo u trust me..? 💖",
+    "Pattu 🧸❤️\n\nI don’t want you to be the sorrow under a dark sky.\nI will be your sunshine.\n\nDo you trust me..? 💖",
     true
   );
 };
