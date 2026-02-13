@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(#ffb6c1, #ffc0cb);
+  text-align: center;
+}
+
+.section {
+  display: none;
+  min-height: 100vh;
+  padding: 60px 20px;
+  box-sizing: border-box;
+}
+
+.section.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1, h2 {
+  color: #7b0033;
+}
+
+p {
+  font-size: 18px;
+}
+
+button {
+  padding: 12px 22px;
+  margin: 12px;
+  border-radius: 25px;
+  border: none;
+  background: #ff4d6d;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff1f4d;
+}
+
+#slideshow img {
+  width: 85%;
+  max-width: 320px;
+  border-radius: 20px;
+  animation: fade 1s;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.btn-group {
+  position: relative;
+  height: 120px;
+}
+
+#noBtn {
+  position: absolute;
+}
+
+#popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+#popup.hidden {
+  display: none;
+}
+
+#popup img {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+#popup p {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 320px;
+  white-space: pre-line;
+}
+
+@media (min-width: 768px) {
+  p { font-size: 20px; }
+  button { font-size: 18px; }
+  #slideshow img { max-width: 380px; }
+}
