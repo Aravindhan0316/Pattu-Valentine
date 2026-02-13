@@ -3,36 +3,36 @@ const quizData = [
     q: "What is my favourite thing about you? 💕",
     options: [
       { text: "Your Innocence 😍", correct: true },
-      { text: "Your boobies 😜", correct: false },
-      { text: "Your possessiveness 😆", correct: false }
+      { text: "Your possessiveness 😆", correct: false },
+      { text: "Your smile 😌", correct: false }
     ],
     reactions: {
-      correct: "Of course 😍 that innocent smile is my weakness!",
-      wrong: "Oiii 😤 look properly…!"
+      correct: "That innocent smile is my weakness ❤️",
+      wrong: "Nooo 😜 try again next question!"
     }
   },
   {
     q: "What do I do when I miss you? 🥹",
     options: [
       { text: "Act strong 😎", correct: false },
-      { text: "Overthink silently 🙃", correct: false },
-      { text: "Text you instantly 😌❤️", correct: true }
+      { text: "Text you instantly 😌❤️", correct: true },
+      { text: "Sleep 😴", correct: false }
     ],
     reactions: {
-      correct: "Yes 😌❤️ I literally run to my phone!",
-      wrong: "Haha nope 😜 I can’t survive without texting you."
+      correct: "Yes 😌❤️ I run to my phone!",
+      wrong: "Nope 😜 I can't survive without texting you."
     }
   },
   {
     q: "Who is officially my favourite person? 💖",
     options: [
-      { text: "You 😌❤️", correct: false },
-      { text: "Earth 😎", correct: true },
-      { text: "Food 🍕", correct: false }
+      { text: "You 😌❤️", correct: true },
+      { text: "Food 🍕", correct: false },
+      { text: "Earth 🌍", correct: false }
     ],
     reactions: {
-      correct: "Obviously Nee dhan en ulagame!",
-      wrong: "Excuse meee 😤 there’s only one right answer!"
+      correct: "Nee dhan en ulagame ❤️",
+      wrong: "Excuse meee 😤 only one right answer!"
     }
   }
 ];
@@ -53,14 +53,19 @@ const popupTeddy = document.getElementById("popupTeddy");
 
 const music = document.getElementById("bgMusic");
 
-document.getElementById("startBtn").onclick = () => {
+/* ===== START BUTTON (MUSIC STARTS HERE) ===== */
+document.getElementById("startBtn").addEventListener("click", function () {
   intro.classList.remove("active");
   quiz.classList.add("active");
-  music.volume = 0.6;
-  music.play().catch(() => {});
-  loadQuestion();
-};
 
+  music.volume = 0.7;
+  music.currentTime = 0;
+  music.play().catch(err => console.log(err));
+
+  loadQuestion();
+});
+
+/* ===== QUIZ ===== */
 function loadQuestion() {
   const q = quizData[currentQ];
   questionEl.textContent = q.q;
@@ -96,6 +101,7 @@ function handleAnswer(correct) {
   }
 }
 
+/* ===== POPUP ===== */
 function showPopup(text, final = false) {
   popupText.textContent = text;
   popupTeddy.style.display = final ? "block" : "none";
@@ -106,6 +112,7 @@ function closePopup() {
   popup.classList.add("hidden");
 }
 
+/* ===== SLIDESHOW ===== */
 const photos = [
   "images/photo1.png",
   "images/photo2.png",
@@ -134,6 +141,7 @@ function startSlideshow() {
   }, 15000);
 }
 
+/* ===== YES / NO ===== */
 const noBtn = document.getElementById("noBtn");
 
 noBtn.onmouseover = () => {
@@ -144,7 +152,7 @@ noBtn.onmouseover = () => {
 document.getElementById("yesBtn").onclick = () => {
   document.querySelector(".btn-group").style.display = "none";
   showPopup(
-    "Pattu 🧸❤️\n\nI will be your sunshine.\n\nDo you trust me..? 💖",
-    true
+    "Pattu 🧸❤️\n\nI don't want to the sorrow under the dark sky.\nI will be sunshine\n\nDo u trust me..? 💖",
+ true
   );
 };
