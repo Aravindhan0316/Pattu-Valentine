@@ -1,5 +1,3 @@
-/* ================= QUIZ DATA ================= */
-
 const quizData = [
   {
     q: "What is my favourite thing about you? 💕",
@@ -9,7 +7,7 @@ const quizData = [
       { text: "Your possessiveness 😆", correct: false }
     ],
     reactions: {
-      correct: "Of course 😍 that innocent smile is my weakness (Also boobs too 😜)!",
+      correct: "Of course 😍 that innocent smile is my weakness!",
       wrong: "Oiii 😤 look properly…!"
     }
   },
@@ -41,8 +39,6 @@ const quizData = [
 
 let currentQ = 0;
 
-/* ================= ELEMENTS ================= */
-
 const intro = document.getElementById("intro");
 const quiz = document.getElementById("quiz");
 const slideshow = document.getElementById("slideshow");
@@ -57,19 +53,13 @@ const popupTeddy = document.getElementById("popupTeddy");
 
 const music = document.getElementById("bgMusic");
 
-/* ================= INTRO ================= */
-
 document.getElementById("startBtn").onclick = () => {
   intro.classList.remove("active");
   quiz.classList.add("active");
-
   music.volume = 0.6;
   music.play().catch(() => {});
-
   loadQuestion();
 };
-
-/* ================= QUIZ ================= */
 
 function loadQuestion() {
   const q = quizData[currentQ];
@@ -97,16 +87,14 @@ function handleAnswer(correct) {
     setTimeout(() => {
       closePopup();
       loadQuestion();
-    }, 1600);
+    }, 1500);
   } else {
     setTimeout(() => {
       closePopup();
       startSlideshow();
-    }, 1600);
+    }, 1500);
   }
 }
-
-/* ================= POPUP ================= */
 
 function showPopup(text, final = false) {
   popupText.textContent = text;
@@ -118,15 +106,13 @@ function closePopup() {
   popup.classList.add("hidden");
 }
 
-/* ================= SLIDESHOW ================= */
-
 const photos = [
-  "photo1.png",
-  "photo2.png",
-  "photo3.png",
-  "photo4.png",
-  "photo5.png",
-  "photo6.png"
+  "images/photo1.png",
+  "images/photo2.png",
+  "images/photo3.png",
+  "images/photo4.png",
+  "images/photo5.png",
+  "images/photo6.png"
 ];
 
 let slideIndex = 0;
@@ -148,8 +134,6 @@ function startSlideshow() {
   }, 15000);
 }
 
-/* ================= YES / NO ================= */
-
 const noBtn = document.getElementById("noBtn");
 
 noBtn.onmouseover = () => {
@@ -159,9 +143,8 @@ noBtn.onmouseover = () => {
 
 document.getElementById("yesBtn").onclick = () => {
   document.querySelector(".btn-group").style.display = "none";
-
   showPopup(
-    "Pattu 🧸❤️\n\nI don’t want you to be the sorrow under a dark sky.\nI will be your sunshine.\n\nDo you trust me..? 💖",
+    "Pattu 🧸❤️\n\nI will be your sunshine.\n\nDo you trust me..? 💖",
     true
   );
 };
