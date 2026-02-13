@@ -23,6 +23,10 @@ h1, h2 {
   color: #7b0033;
 }
 
+p {
+  font-size: 18px;
+}
+
 button {
   padding: 12px 22px;
   margin: 12px;
@@ -40,8 +44,14 @@ button:hover {
 
 #slideshow img {
   width: 85%;
-  max-width: 350px;
+  max-width: 320px;
   border-radius: 20px;
+  animation: fade 1s;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .btn-group {
@@ -79,4 +89,18 @@ button:hover {
   border-radius: 15px;
   max-width: 320px;
   white-space: pre-line;
+}
+
+@media (min-width: 768px) {
+  p {
+    font-size: 20px;
+  }
+
+  button {
+    font-size: 18px;
+  }
+
+  #slideshow img {
+    max-width: 380px;
+  }
 }
